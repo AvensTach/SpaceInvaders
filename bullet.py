@@ -7,7 +7,7 @@ class Bullet(pygame.sprite.Sprite):
         """create bullet"""
         super(Bullet, self).__init__()
         self.screen = screen
-        self.rect = pygame.Rect(0, 0, 300, 12)
+        self.rect = pygame.Rect(0, 0, 6, 12)
         self.color = 76, 175, 79
         self.speed = 2
         self.rect.centerx = gun.rect.centerx
