@@ -5,31 +5,26 @@ from ino import  Ino
 import time
 
 
-def events(screen, gun, bullets):
-    '''обробка дій'''
+def handle_events(screen, gun, bullets):
     for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 sys.exit()
             elif event.type == pygame.KEYDOWN:
-                #направо
                 if event.key == pygame.K_d:
                     gun.mright = True
-                #вправо
                 elif event.key == pygame.K_a:
                     gun.mleft = True
-                #shoot bullet
                 elif event.key == pygame.K_SPACE:
                     new_bullet = Bullet(screen, gun)
                     bullets.add(new_bullet)
             elif event.type == pygame.KEYUP:
-                #направо
                 if event.key == pygame.K_d:
                     gun.mright = False
-                #вліво
                 elif event.key == pygame.K_a:
                     gun.mleft = False
+
+
 def update(bg_color, screen, gun, inos, bullets):
-    '''screen update'''
     screen.fill(bg_color)
     for bullet in bullets.sprites():
         bullet.draw_bullet()
@@ -37,8 +32,8 @@ def update(bg_color, screen, gun, inos, bullets):
     inos.draw(screen)
     pygame.display.flip()
 
+    
 def update_bullets(screen, inos, bullets):
-    """bullets update"""
     bullets.update()
     for bullet in bullets.copy():
         if bullet.rect.bottom <= 0:
@@ -51,7 +46,6 @@ def update_bullets(screen, inos, bullets):
 
 
 def gun_kill(stats, screen, gun, inos, bullets):
-    """army and gun colition"""
     if stats.guns_left > 0:
         stats.guns_left -= 1
         inos.empty()
@@ -65,14 +59,13 @@ def gun_kill(stats, screen, gun, inos, bullets):
 
 
 def update_inos(stats, screen, gun , inos , bullets):
-    """inos position update"""
     inos.update()
     if pygame.sprite.spritecollideany(gun, inos):
         gun_kill(stats, screen, gun, inos, bullets)
     inos_check(stats, screen, gun, inos, bullets)
 
+    
 def inos_check(stats, screen, gun, inos, bullets):
-    """чи дійшла армія до кінця"""
     screen_rect = screen.get_rect()
     for ino in inos.sprites():
         if ino.rect.bottom >= screen_rect.bottom:
@@ -84,7 +77,6 @@ def inos_check(stats, screen, gun, inos, bullets):
 
 
 def create_army(screen, inos):
-    """create army inos"""
     ino = Ino(screen)
     ino_width = ino.rect.width
     number_ino_x = int((700 - 2 * ino_width) / ino_width)
@@ -99,8 +91,3 @@ def create_army(screen, inos):
             ino.rect.x = ino.x
             ino.rect.y = ino.rect.height + (ino.rect.height * row_number)
             inos.add(ino)
-
-
-
-
-
