@@ -13,4 +13,4 @@ This project might be useful for guys who have entry level at gamedev and are tr
 
 
 ## Preview
-![photo](https://github.com/artemisia0/SpaceInvaders/tree/refactoring/preview.png)
+![photo](preview.png)
