@@ -1,10 +1,8 @@
 import pygame
 
-class Ino(pygame.sprite.Sprite):
-    """1 alien"""
 
+class Ino(pygame.sprite.Sprite):
     def __init__(self, screen):
-        """initialization"""
         super(Ino, self).__init__()
         self.screen = screen
         self.image = pygame.image.load('image/pixil-frame-1.png')
@@ -16,14 +14,10 @@ class Ino(pygame.sprite.Sprite):
 
 
     def draw(self):
-        """draw ino"""
         self.screen.blit(self.image, self.rect)
 
 
 
     def update(self):
-        """move inos"""
         self.y += 0.05
         self.rect.y = self.y
-
-

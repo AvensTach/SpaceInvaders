@@ -1,10 +1,7 @@
 import pygame
 
 class Gun():
-
-
     def __init__(self, screen):
-
         self.screen = screen
         self.image = pygame.image.load('image/pixil-frame-0.png')
         self.rect = self.image.get_rect()
@@ -14,36 +11,21 @@ class Gun():
         self.rect.bottom = self.screen_rect.bottom
         self.mright = False
         self.mleft = False
-
+        self.speed = 8
 
 
     def output(self):
-        '''малює'''
         self.screen.blit(self.image, self.rect)
 
 
-
     def update_gun(self):
-        '''обновлення позиції'''
-        #вправо
         if self.mright and self.rect.right < self.screen_rect.right:
-            self.center +=1.5
-        #вліво
+            self.center += self.speed
         elif self.mleft and self.rect.left > 0:
-            self.center -=1.5
+            self.center -= self.speed
 
         self.rect.centerx = self.center
 
 
-
     def create_gun(self):
-        """create gun at center"""
-
         self.center = self.screen_rect.centerx
-
-
-
-
-
-
-
